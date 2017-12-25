@@ -1,0 +1,83 @@
+[
+    {
+        "id": "c7097062.5ef49",
+        "type": "tab",
+        "label": "Flow 3"
+    },
+    {
+        "id": "a2aeecc5.d6e96",
+        "type": "inject",
+        "z": "c7097062.5ef49",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "8d5275f9.69df58"
+            ]
+        ]
+    },
+    {
+        "id": "8d5275f9.69df58",
+        "type": "function",
+        "z": "c7097062.5ef49",
+        "name": "playload",
+        "func": "msg.headers={\n    deviceKey: \"wbAaaTCOgyjsHON4\"\n    };\n    \nmsg.payload= \"Humidity,,50\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 357,
+        "y": 226,
+        "wires": [
+            [
+                "c8322b11.e88198"
+            ]
+        ]
+    },
+    {
+        "id": "c8322b11.e88198",
+        "type": "http request",
+        "z": "c7097062.5ef49",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DwEs4w3m/datapoints.csv",
+        "tls": "",
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "33230304.1c2cfc",
+                "9c7c623f.a76a1"
+            ]
+        ]
+    },
+    {
+        "id": "33230304.1c2cfc",
+        "type": "debug",
+        "z": "c7097062.5ef49",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 730,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9c7c623f.a76a1",
+        "type": "http response",
+        "z": "c7097062.5ef49",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 726,
+        "y": 197,
+        "wires": []
+    }
+]
